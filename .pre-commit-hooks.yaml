@@ -1,0 +1,6 @@
+- id: uvx
+  name: uvx command
+  language: python
+  always_run: true
+  additional_dependencies: []
+  entry: uvx

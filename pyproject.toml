@@ -1,0 +1,111 @@
+[project]
+name = "python-project-template"
+version = "0.1.0"
+description = "A template for my Python projects."
+readme = "README.md"
+authors = [
+    { name = "Galen Rice", email = "griceturrble@protonmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+project = "python_project_template:main"
+
+[dependency-groups]
+docs = [
+    "mkdocs-material>=9.5.49",
+]
+dev = [
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+]
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+addopts = """
+--verbose
+--cov=python_project_template
+--no-cov-on-fail
+--cov-branch
+--cov-report=html:pytest_cov
+"""
+
+# Recommended ruff linting options
+# For more details see: https://docs.astral.sh/ruff/configuration/
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "B",    # flake8-bugbear
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "FLY",  # flynt
+    "I",    # isort
+    "N",    # pep8-naming
+    "NPY",  # numpy-specific
+    "PERF", # performance
+    "PL",   # Pylint
+    "S",    # flake8-bandit (security checks)
+    "UP",   # pyupgrade (pre-commit hook for pyupgrade should fix most)
+    "W",    # pycodestyle warnings
+]
+
+# Ignore certain rules across the entire repo
+# (after selecting a set of rules like 'E', ignore subsets of those rules here)
+ignore = [
+    # Selected ignore rules
+    "E203",    # whitespace-before-punctuation
+    "F401",    # unused-import (pycln will remove these)
+    "F811",    # redefined-while-unused
+    "PLR0913", # too-many-arguments
+    "S101",    # assert (usage of the assert statement)
+    "S113",    # request-without-timeout
+    "S602",    # subprocess-popen-with-shell-equals-true
+    "S603",    # subprocess-without-shell-equals-true
+    "S607",    # start-process-with-partial-path
+    "S608",    # hardcoded-sql-expression
+    # Rules recommended to avoid when using Ruff formatter
+    "COM812", # missing-trailing-comma
+    "COM819", # prohibited-trailing-comma
+    "D206",   # indent-with-spaces
+    "D300",   # triple-single-quotes
+    "E111",   # indentation-with-invalid-multiple
+    "E114",   # indentation-with-invalid-multiple-comment
+    "E117",   # over-indented
+    "ISC001", # single-line-implicit-string-concatenation
+    "ISC002", # multi-line-implicit-string-concatenation
+    "Q000",   # bad-quotes-inline-string
+    "Q001",   # bad-quotes-multiline-string
+    "Q002",   # bad-quotes-docstring
+    "Q003",   # avoidable-escaped-quote
+    "W191",   # tab-indentation
+]
+
+# Attempt to auto-fix if running `ruff check . --fix`
+fixable = [
+    "I",  # isort
+    "UP", # pyupgrade
+]
+
+# Avoid fixing these when using `--fix`.
+unfixable = [
+    "B", # flake8-bugbear
+]
+
+# Skip checking any files matching glob patterns:
+# exclude = ["**/test/**/*.*"]
+
+# Exclude rules from being applied to files matching glob patterns:
+[tool.ruff.lint.per-file-ignores]
+"**/*test.py" = [
+    "F811",    # redefined-while-unused
+    "N",       # pep8-naming
+    "PLR2004", # magic-value-comparison
+]

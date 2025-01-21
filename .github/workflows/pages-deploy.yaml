@@ -1,0 +1,66 @@
+## Deploy docs to GitHub Pages
+
+## This workflow is commented (and therefore disabled) initially.
+## You must enable GitHub Pages in the project before this workflow can succeed.
+## 1. In the repo Settings, click Pages in the left-hand side.
+## 2. Under Source, choose GitHub Actions.
+## 3. Uncomment the workflow below, then push the changes to main branch.
+## The project should auto-deploy the MkDocs site defined in docs/ folder automatically.
+## (run the docs locally first! Use `just docs` to start a hot-reloading local server)
+
+# name: GitHub Pages deploy
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches: [main]
+
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
+
+# concurrency:
+#   group: pages
+#   cancel-in-progress: true
+
+# env:
+#   SITE_DIR: "site"
+#   PYTHON_VERSION: "3.12"
+
+# jobs:
+#   build_deploy:
+#     name: "Build & deploy site"
+#     runs-on: ubuntu-latest
+#     environment:
+#       name: github-pages
+#       url: ${{ steps.deployment.outputs.page_url }}
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+
+#       # Setup GitHub pages, ready to update stuff
+#       - name: Setup GitHub Pages
+#         id: pages
+#         uses: actions/configure-pages@v5
+
+#       # Setup python via UV
+#       - name: Install uv
+#         uses: astral-sh/setup-uv@v5
+#         with:
+#           python-version: ${{ env.PYTHON_VERSION }}
+
+#       - name: Install project dependencies
+#         run: uv sync --all-groups
+
+#       - name: Build site via mkdocs
+#         run: uv run mkdocs build -d ${{ env.SITE_DIR }}
+
+#       # Upload our site content, to be pulled by the deploy step
+#       - name: Upload site artifact
+#         uses: actions/upload-pages-artifact@v3
+#         with:
+#           path: ${{ env.SITE_DIR }}
+
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#         uses: actions/deploy-pages@v4

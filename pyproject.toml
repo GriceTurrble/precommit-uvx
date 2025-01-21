@@ -1,42 +1,15 @@
 [project]
-name = "python-project-template"
+name = "pre-commit-uvx"
 version = "0.1.0"
-description = "A template for my Python projects."
+description = "Pre-commit action to run a uvx command"
 readme = "README.md"
 authors = [
     { name = "Galen Rice", email = "griceturrble@protonmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
-
-[project.scripts]
-project = "python_project_template:main"
-
-[dependency-groups]
-docs = [
-    "mkdocs-material>=9.5.49",
+dependencies = [
+    "uv>=0.5.21",
 ]
-dev = [
-    "pytest>=8.3.4",
-    "pytest-cov>=6.0.0",
-]
-
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[tool.pytest.ini_options]
-addopts = """
---verbose
---cov=python_project_template
---no-cov-on-fail
---cov-branch
---cov-report=html:pytest_cov
-"""
-
-# Recommended ruff linting options
-# For more details see: https://docs.astral.sh/ruff/configuration/
 
 [tool.ruff]
 target-version = "py312"

@@ -1,3 +1,3 @@
 # python-project-template
 
-Basic template for a Python project
+Pre-commit action to run a uvx command

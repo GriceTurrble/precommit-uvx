@@ -175,3 +175,4 @@ common.just
 .python-version
 pytest_cov
 .ruff_cache
+.DS_Store

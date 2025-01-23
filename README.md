@@ -1,6 +1,6 @@
 # python-project-template
 
-Pre-commit action to run a uvx command
+[Pre-commit](https://pre-commit.com) action to run a uvx command
 
 ## Archived
 
@@ -23,7 +23,7 @@ In `.pre-commit-config.yaml`, use the following as an example:
       args: [flake8]
 ```
 
-The hook simply calls `uvx` with the give `args` on any file match the `type_or` array.
+The hook simply calls `uvx` with the give `args` on any file types matching the `types_or` array.
 
 Pre-commit passes a list of files to this command after any `args` are given.
 If `always_run` is set to `true`, it runs on all files in the repo every time,
